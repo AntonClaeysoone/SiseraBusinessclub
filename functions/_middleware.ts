@@ -1,3 +1,7 @@
+/**
+ * Cloudflare Pages Middleware
+ * Sets correct MIME types for JavaScript and CSS files
+ */
 export const onRequest: PagesFunction = async (context) => {
   const response = await context.next()
   const url = new URL(context.request.url)
