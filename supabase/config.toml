@@ -1,0 +1,18 @@
+# Supabase Edge Functions Configuration
+# This file is used by Supabase CLI for local development
+
+[project]
+# Your Supabase project reference ID
+# You can find this in your Supabase dashboard
+
+[functions]
+# Edge Functions configuration
+
+[functions.send-membership-email]
+# Environment variables for the send-membership-email function
+# Set these in your Supabase dashboard under Settings > Edge Functions > Secrets
+# Or use: supabase secrets set RESEND_API_KEY=your_key_here
+# And: supabase secrets set RECIPIENT_EMAIL=antonclaeysoone@icloud.com
+
+
+

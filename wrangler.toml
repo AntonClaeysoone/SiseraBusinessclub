@@ -1,0 +1,13 @@
+# Cloudflare Pages Configuration
+# This file is optional but helps with local development and configuration
+
+name = "sisera-business-club"
+compatibility_date = "2024-01-01"
+
+# Build configuration
+# Cloudflare Pages will automatically detect Vite and use npm run build
+# Build output directory: dist
+
+# Environment variables should be set in Cloudflare Pages dashboard:
+# - VITE_SUPABASE_URL
+# - VITE_SUPABASE_ANON_KEY

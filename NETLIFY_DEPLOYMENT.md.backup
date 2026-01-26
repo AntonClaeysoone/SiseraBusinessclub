@@ -1,0 +1,59 @@
+# Netlify Deployment Guide
+
+## Environment Variables Setup
+
+Voor deze app om te werken op Netlify, moet je de volgende environment variables instellen in je Netlify dashboard.
+
+### Stappen:
+
+1. **Ga naar je Netlify Dashboard**
+   - Selecteer je site
+   - Ga naar **Site settings** → **Environment variables**
+
+2. **Voeg de volgende variabelen toe:**
+
+   | Key | Value |
+   |-----|-------|
+   | `VITE_SUPABASE_URL` | `https://mnpzmgoxcmldbhnktvtw.supabase.co` |
+   | `VITE_SUPABASE_ANON_KEY` | `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ucHptZ294Y21sZGJobmt0dnR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg2MDQ5MTgsImV4cCI6MjA2NDE4MDkxOH0.WUt1hOfh7lvefIh8aFGCU7bm6A-zzZPM0GzcNc81EEk` |
+
+### ⚠️ BELANGRIJK:
+
+- **De variabelen MOETEN de `VITE_` prefix hebben**
+- Dit is nodig omdat Vite alleen variabelen met deze prefix beschikbaar maakt aan client-side code
+- Zonder deze prefix worden de variabelen NIET ingebouwd tijdens de build
+
+### Na het instellen:
+
+1. **Trigger een nieuwe deploy:**
+   - Ga naar **Deploys** tab
+   - Klik op **Trigger deploy** → **Deploy site**
+   - Of push een nieuwe commit naar je repository
+
+2. **Controleer de build logs:**
+   - Zorg dat de build succesvol is
+   - Check of er geen errors zijn over missing environment variables
+
+### Troubleshooting:
+
+Als je nog steeds de error krijgt "Missing Supabase environment variables":
+
+1. **Controleer de variabele namen:**
+   - Ze moeten exact zijn: `VITE_SUPABASE_URL` en `VITE_SUPABASE_ANON_KEY`
+   - Geen extra spaties of hoofdletters verschillen
+
+2. **Check de build logs:**
+   - Ga naar **Deploys** → Selecteer de laatste deploy → **Build log**
+   - Zoek naar errors over environment variables
+
+3. **Redeploy na het instellen:**
+   - Environment variables worden alleen gebruikt tijdens de build
+   - Je moet een nieuwe deploy triggeren na het toevoegen/aanpassen
+
+4. **Test lokaal:**
+   - Zorg dat je `.env` file correct is
+   - Run `npm run build` lokaal om te testen
+
+### Security Note:
+
+De Supabase ANON_KEY is veilig om publiek te maken - het is specifiek ontworpen voor client-side gebruik. De URL is ook publiek. Deze variabelen worden ingebouwd in je JavaScript bundle en zijn zichtbaar in de browser, wat normaal is voor Supabase client-side configuratie.

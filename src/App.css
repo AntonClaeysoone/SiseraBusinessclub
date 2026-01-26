@@ -1,0 +1,38 @@
+.luxury-divider {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .luxury-divider {
+    width: 100px;
+    height: 3px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .luxury-divider {
+    width: 120px;
+  }
+}
+
+.luxury-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background: #d4af37;
+  border-radius: 50%;
+}
+
+@media (min-width: 640px) {
+  .luxury-divider::before {
+    width: 8px;
+    height: 8px;
+  }
+}
