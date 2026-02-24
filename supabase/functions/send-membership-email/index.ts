@@ -2,7 +2,12 @@ import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
-const RECIPIENT_EMAIL = Deno.env.get('RECIPIENT_EMAIL') || 'johannes@sisera.be';
+// Always send to both; optional RECIPIENT_EMAIL adds an extra recipient
+const RECIPIENT_EMAILS = [
+  'johannes@sisera.be',
+  'anton@mylabeldesk.com',
+  ...(Deno.env.get('RECIPIENT_EMAIL') ? [Deno.env.get('RECIPIENT_EMAIL')] : []),
+];
 
 interface MembershipRequest {
   name: string;
@@ -87,7 +92,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         from: 'SISERA Business Club <noreply@sisera.be>',
-        to: [RECIPIENT_EMAIL],
+        to: RECIPIENT_EMAILS,
         subject: `Nieuwe Lidmaatschap Aanvraag: ${membershipData.name} - ${membershipData.company}`,
         html: emailBody,
         reply_to: membershipData.email,
