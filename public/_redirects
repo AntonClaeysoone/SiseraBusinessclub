@@ -1,1 +1,4 @@
+# Serve static assets as-is (must be first; redirects override static file lookup)
+/assets/*   /assets/:splat   200
+# SPA fallback: all other paths → index.html
 /*    /index.html   200
