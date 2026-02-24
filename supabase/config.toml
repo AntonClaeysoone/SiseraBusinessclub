@@ -12,7 +12,7 @@
 # Environment variables for the send-membership-email function
 # Set these in your Supabase dashboard under Settings > Edge Functions > Secrets
 # Or use: supabase secrets set RESEND_API_KEY=your_key_here
-# And: supabase secrets set RECIPIENT_EMAIL=antonclaeysoone@icloud.com
+# And: supabase secrets set RECIPIENT_EMAIL=johannes@sisera.be
 
 
 

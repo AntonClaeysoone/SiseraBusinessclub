@@ -18,17 +18,6 @@ const WordLid = () => {
   const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!authLoading && user) {
-      // Redirect ingelogde gebruikers naar home
-      navigate('/');
-    }
-  }, [user, authLoading, navigate]);
-
-  // Don't render if user is logged in
-  if (authLoading || user) {
-    return null;
-  }
   const [formData, setFormData] = useState<MembershipFormData>({
     name: '',
     email: '',
@@ -42,6 +31,18 @@ const WordLid = () => {
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
+
+  useEffect(() => {
+    if (!authLoading && user) {
+      // Redirect ingelogde gebruikers naar home
+      navigate('/');
+    }
+  }, [user, authLoading, navigate]);
+
+  // Don't render if user is logged in
+  if (authLoading || user) {
+    return null;
+  }
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

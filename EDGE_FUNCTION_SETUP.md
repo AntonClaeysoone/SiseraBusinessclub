@@ -2,6 +2,8 @@
 
 This guide explains how to set up the email sending functionality for the membership form.
 
+**Important:** The `send-membership-email` Edge Function must be **deployed** to your Supabase project for the Word Lid form to send emails. Until it is deployed, the form will save requests to the database but the email to johannes@sisera.be will fail.
+
 ## Prerequisites
 
 1. A Supabase account and project
@@ -49,13 +51,13 @@ supabase functions deploy send-membership-email
 1. Go to Edge Functions > Settings
 2. Add the following secrets:
    - `RESEND_API_KEY`: Your Resend API key
-   - `RECIPIENT_EMAIL`: antonclaeysoone@icloud.com (or leave default)
+   - `RECIPIENT_EMAIL`: johannes@sisera.be (or leave default)
 
 ### Using Supabase CLI:
 
 ```bash
 supabase secrets set RESEND_API_KEY=your_resend_api_key_here
-supabase secrets set RECIPIENT_EMAIL=antonclaeysoone@icloud.com
+supabase secrets set RECIPIENT_EMAIL=johannes@sisera.be
 ```
 
 ## Step 4: Update Domain in Resend
